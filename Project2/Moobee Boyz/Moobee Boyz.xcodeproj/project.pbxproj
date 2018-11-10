@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6720DF0321965C99009E23B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720DF0221965C99009E23B7 /* AppDelegate.swift */; };
+		6720DF0821965C99009E23B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6720DF0621965C99009E23B7 /* Main.storyboard */; };
+		6720DF0A21965C9B009E23B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6720DF0921965C9B009E23B7 /* Assets.xcassets */; };
+		6720DF0D21965C9B009E23B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6720DF0B21965C9B009E23B7 /* LaunchScreen.storyboard */; };
+		6720DF1821965C9B009E23B7 /* Moobee_BoyzTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720DF1721965C9B009E23B7 /* Moobee_BoyzTests.swift */; };
+		6720DF2321965C9B009E23B7 /* Moobee_BoyzUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6720DF2221965C9B009E23B7 /* Moobee_BoyzUITests.swift */; };
+		6720DF7421966B03009E23B7 /* crown-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 6720DF6F21966B02009E23B7 /* crown-7.png */; };
+		6720DF7521966B03009E23B7 /* heart-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 6720DF7021966B02009E23B7 /* heart-7.png */; };
+		6720DF7621966B03009E23B7 /* home-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 6720DF7121966B03009E23B7 /* home-7.png */; };
+		6720DF7721966B03009E23B7 /* search-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 6720DF7221966B03009E23B7 /* search-7.png */; };
+		6720DF7821966B03009E23B7 /* clock-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 6720DF7321966B03009E23B7 /* clock-7.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6720DF1421965C9B009E23B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6720DEF721965C99009E23B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6720DEFE21965C99009E23B7;
+			remoteInfo = "Moobee Boyz";
+		};
+		6720DF1F21965C9B009E23B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6720DEF721965C99009E23B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6720DEFE21965C99009E23B7;
+			remoteInfo = "Moobee Boyz";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6720DEFF21965C99009E23B7 /* Moobee Boyz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moobee Boyz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6720DF0221965C99009E23B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6720DF0721965C99009E23B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6720DF0921965C9B009E23B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6720DF0C21965C9B009E23B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6720DF0E21965C9B009E23B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6720DF1321965C9B009E23B7 /* Moobee BoyzTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moobee BoyzTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6720DF1721965C9B009E23B7 /* Moobee_BoyzTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moobee_BoyzTests.swift; sourceTree = "<group>"; };
+		6720DF1921965C9B009E23B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6720DF1E21965C9B009E23B7 /* Moobee BoyzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moobee BoyzUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6720DF2221965C9B009E23B7 /* Moobee_BoyzUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moobee_BoyzUITests.swift; sourceTree = "<group>"; };
+		6720DF2421965C9B009E23B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6720DF6F21966B02009E23B7 /* crown-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "crown-7.png"; sourceTree = "<group>"; };
+		6720DF7021966B02009E23B7 /* heart-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart-7.png"; sourceTree = "<group>"; };
+		6720DF7121966B03009E23B7 /* home-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-7.png"; sourceTree = "<group>"; };
+		6720DF7221966B03009E23B7 /* search-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-7.png"; sourceTree = "<group>"; };
+		6720DF7321966B03009E23B7 /* clock-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clock-7.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6720DEFC21965C99009E23B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6720DF1021965C9B009E23B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6720DF1B21965C9B009E23B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6720DEF621965C99009E23B7 = {
+			isa = PBXGroup;
+			children = (
+				6720DF0121965C99009E23B7 /* Moobee Boyz */,
+				6720DF2121965C9B009E23B7 /* Moobee BoyzUITests */,
+				6720DF0021965C99009E23B7 /* Products */,
+				6720DF1621965C9B009E23B7 /* Moobee BoyzTests */,
+			);
+			sourceTree = "<group>";
+		};
+		6720DF0021965C99009E23B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6720DEFF21965C99009E23B7 /* Moobee Boyz.app */,
+				6720DF1321965C9B009E23B7 /* Moobee BoyzTests.xctest */,
+				6720DF1E21965C9B009E23B7 /* Moobee BoyzUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6720DF0121965C99009E23B7 /* Moobee Boyz */ = {
+			isa = PBXGroup;
+			children = (
+				6720DF0221965C99009E23B7 /* AppDelegate.swift */,
+				6720DF0621965C99009E23B7 /* Main.storyboard */,
+				6720DF0921965C9B009E23B7 /* Assets.xcassets */,
+				6720DF0B21965C9B009E23B7 /* LaunchScreen.storyboard */,
+				6720DF0E21965C9B009E23B7 /* Info.plist */,
+				6720DF7321966B03009E23B7 /* clock-7.png */,
+				6720DF6F21966B02009E23B7 /* crown-7.png */,
+				6720DF7021966B02009E23B7 /* heart-7.png */,
+				6720DF7121966B03009E23B7 /* home-7.png */,
+				6720DF7221966B03009E23B7 /* search-7.png */,
+			);
+			path = "Moobee Boyz";
+			sourceTree = "<group>";
+		};
+		6720DF1621965C9B009E23B7 /* Moobee BoyzTests */ = {
+			isa = PBXGroup;
+			children = (
+				6720DF1721965C9B009E23B7 /* Moobee_BoyzTests.swift */,
+				6720DF1921965C9B009E23B7 /* Info.plist */,
+			);
+			path = "Moobee BoyzTests";
+			sourceTree = "<group>";
+		};
+		6720DF2121965C9B009E23B7 /* Moobee BoyzUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6720DF2221965C9B009E23B7 /* Moobee_BoyzUITests.swift */,
+				6720DF2421965C9B009E23B7 /* Info.plist */,
+			);
+			path = "Moobee BoyzUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6720DEFE21965C99009E23B7 /* Moobee Boyz */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6720DF2721965C9B009E23B7 /* Build configuration list for PBXNativeTarget "Moobee Boyz" */;
+			buildPhases = (
+				6720DEFB21965C99009E23B7 /* Sources */,
+				6720DEFC21965C99009E23B7 /* Frameworks */,
+				6720DEFD21965C99009E23B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Moobee Boyz";
+			productName = "Moobee Boyz";
+			productReference = 6720DEFF21965C99009E23B7 /* Moobee Boyz.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6720DF1221965C9B009E23B7 /* Moobee BoyzTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6720DF2A21965C9B009E23B7 /* Build configuration list for PBXNativeTarget "Moobee BoyzTests" */;
+			buildPhases = (
+				6720DF0F21965C9B009E23B7 /* Sources */,
+				6720DF1021965C9B009E23B7 /* Frameworks */,
+				6720DF1121965C9B009E23B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6720DF1521965C9B009E23B7 /* PBXTargetDependency */,
+			);
+			name = "Moobee BoyzTests";
+			productName = "Moobee BoyzTests";
+			productReference = 6720DF1321965C9B009E23B7 /* Moobee BoyzTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6720DF1D21965C9B009E23B7 /* Moobee BoyzUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6720DF2D21965C9B009E23B7 /* Build configuration list for PBXNativeTarget "Moobee BoyzUITests" */;
+			buildPhases = (
+				6720DF1A21965C9B009E23B7 /* Sources */,
+				6720DF1B21965C9B009E23B7 /* Frameworks */,
+				6720DF1C21965C9B009E23B7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6720DF2021965C9B009E23B7 /* PBXTargetDependency */,
+			);
+			name = "Moobee BoyzUITests";
+			productName = "Moobee BoyzUITests";
+			productReference = 6720DF1E21965C9B009E23B7 /* Moobee BoyzUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6720DEF721965C99009E23B7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = COMP401;
+				TargetAttributes = {
+					6720DEFE21965C99009E23B7 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					6720DF1221965C9B009E23B7 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 6720DEFE21965C99009E23B7;
+					};
+					6720DF1D21965C9B009E23B7 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 6720DEFE21965C99009E23B7;
+					};
+				};
+			};
+			buildConfigurationList = 6720DEFA21965C99009E23B7 /* Build configuration list for PBXProject "Moobee Boyz" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6720DEF621965C99009E23B7;
+			productRefGroup = 6720DF0021965C99009E23B7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6720DEFE21965C99009E23B7 /* Moobee Boyz */,
+				6720DF1221965C9B009E23B7 /* Moobee BoyzTests */,
+				6720DF1D21965C9B009E23B7 /* Moobee BoyzUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6720DEFD21965C99009E23B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6720DF7621966B03009E23B7 /* home-7.png in Resources */,
+				6720DF0D21965C9B009E23B7 /* LaunchScreen.storyboard in Resources */,
+				6720DF7521966B03009E23B7 /* heart-7.png in Resources */,
+				6720DF7721966B03009E23B7 /* search-7.png in Resources */,
+				6720DF0A21965C9B009E23B7 /* Assets.xcassets in Resources */,
+				6720DF0821965C99009E23B7 /* Main.storyboard in Resources */,
+				6720DF7821966B03009E23B7 /* clock-7.png in Resources */,
+				6720DF7421966B03009E23B7 /* crown-7.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6720DF1121965C9B009E23B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6720DF1C21965C9B009E23B7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6720DEFB21965C99009E23B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6720DF0321965C99009E23B7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6720DF0F21965C9B009E23B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6720DF1821965C9B009E23B7 /* Moobee_BoyzTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6720DF1A21965C9B009E23B7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6720DF2321965C9B009E23B7 /* Moobee_BoyzUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6720DF1521965C9B009E23B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6720DEFE21965C99009E23B7 /* Moobee Boyz */;
+			targetProxy = 6720DF1421965C9B009E23B7 /* PBXContainerItemProxy */;
+		};
+		6720DF2021965C9B009E23B7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6720DEFE21965C99009E23B7 /* Moobee Boyz */;
+			targetProxy = 6720DF1F21965C9B009E23B7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6720DF0621965C99009E23B7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6720DF0721965C99009E23B7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6720DF0B21965C9B009E23B7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6720DF0C21965C9B009E23B7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6720DF2521965C9B009E23B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6720DF2621965C9B009E23B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6720DF2821965C9B009E23B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Moobee Boyz/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "COMP401.Moobee-Boyz";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6720DF2921965C9B009E23B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Moobee Boyz/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "COMP401.Moobee-Boyz";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6720DF2B21965C9B009E23B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Moobee BoyzTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "COMP401.Moobee-BoyzTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moobee Boyz.app/Moobee Boyz";
+			};
+			name = Debug;
+		};
+		6720DF2C21965C9B009E23B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Moobee BoyzTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "COMP401.Moobee-BoyzTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moobee Boyz.app/Moobee Boyz";
+			};
+			name = Release;
+		};
+		6720DF2E21965C9B009E23B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Moobee BoyzUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "COMP401.Moobee-BoyzUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Moobee Boyz";
+			};
+			name = Debug;
+		};
+		6720DF2F21965C9B009E23B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Moobee BoyzUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "COMP401.Moobee-BoyzUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Moobee Boyz";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6720DEFA21965C99009E23B7 /* Build configuration list for PBXProject "Moobee Boyz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6720DF2521965C9B009E23B7 /* Debug */,
+				6720DF2621965C9B009E23B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6720DF2721965C9B009E23B7 /* Build configuration list for PBXNativeTarget "Moobee Boyz" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6720DF2821965C9B009E23B7 /* Debug */,
+				6720DF2921965C9B009E23B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6720DF2A21965C9B009E23B7 /* Build configuration list for PBXNativeTarget "Moobee BoyzTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6720DF2B21965C9B009E23B7 /* Debug */,
+				6720DF2C21965C9B009E23B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6720DF2D21965C9B009E23B7 /* Build configuration list for PBXNativeTarget "Moobee BoyzUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6720DF2E21965C9B009E23B7 /* Debug */,
+				6720DF2F21965C9B009E23B7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6720DEF721965C99009E23B7 /* Project object */;
+}
