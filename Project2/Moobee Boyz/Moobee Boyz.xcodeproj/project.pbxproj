@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F8B37ED219A236900893323 /* Stars.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0F8B37EC219A236900893323 /* Stars.jpg */; };
 		6689CF3A2199DA6D00949347 /* HomeTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689CF392199DA6D00949347 /* HomeTVC.swift */; };
 		6689CF3C2199E04900949347 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689CF3B2199E04900949347 /* MovieCell.swift */; };
 		6689CF3E2199FD6E00949347 /* MovieVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6689CF3D2199FD6E00949347 /* MovieVC.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F8B37EC219A236900893323 /* Stars.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Stars.jpg; sourceTree = "<group>"; };
 		6689CF392199DA6D00949347 /* HomeTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTVC.swift; sourceTree = "<group>"; };
 		6689CF3B2199E04900949347 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		6689CF3D2199FD6E00949347 /* MovieVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieVC.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		6720DF0121965C99009E23B7 /* Moobee Boyz */ = {
 			isa = PBXGroup;
 			children = (
+				0F8B37EC219A236900893323 /* Stars.jpg */,
 				6720DF0221965C99009E23B7 /* AppDelegate.swift */,
 				6689CF392199DA6D00949347 /* HomeTVC.swift */,
 				6689CF3B2199E04900949347 /* MovieCell.swift */,
@@ -258,6 +261,7 @@
 				6720DF0821965C99009E23B7 /* Main.storyboard in Resources */,
 				6720DF7821966B03009E23B7 /* clock-7.png in Resources */,
 				6720DF7421966B03009E23B7 /* crown-7.png in Resources */,
+				0F8B37ED219A236900893323 /* Stars.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
