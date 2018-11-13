@@ -13,10 +13,12 @@ class MovieVC: UIViewController {
     @IBOutlet weak var movieTitle: UILabel!
     
     var movTitle : String = ""
+    var movImg : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         movieTitle.text = movTitle
+        
         // Do any additional setup after loading the view.
     }
     
