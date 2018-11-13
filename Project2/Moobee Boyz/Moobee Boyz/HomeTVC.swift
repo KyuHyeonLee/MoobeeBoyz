@@ -128,8 +128,10 @@ class HomeTVC: UITableViewController, cellDelegate {
         let dest = segue.destination as! MovieVC
         if curInd > 5 {
             dest.movTitle = upcoming[curInd - 6]
+            dest.movImg = upcomingImg[curInd - 6]
         } else {
             dest.movTitle = current[curInd]
+            dest.movImg = currentImg[curInd]
         }
     }
  

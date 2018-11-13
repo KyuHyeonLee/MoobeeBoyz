@@ -11,6 +11,7 @@ import UIKit
 class MovieVC: UIViewController {
 
     @IBOutlet weak var movieTitle: UILabel!
+    @IBOutlet weak var movieImage: UIImageView!
     
     var movTitle : String = ""
     var movImg : String = ""
@@ -18,7 +19,7 @@ class MovieVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         movieTitle.text = movTitle
-        
+        movieImage.image = UIImage(named: movImg)
         // Do any additional setup after loading the view.
     }
     
