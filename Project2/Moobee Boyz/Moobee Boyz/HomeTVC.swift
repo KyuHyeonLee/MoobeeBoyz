@@ -19,6 +19,10 @@ class HomeTVC: UITableViewController, cellDelegate {
     
     let upcoming : [String] = ["Old Man and Gun","Hunter Killer","Goosebumps 2","Nobody's Fool","Small Foot","The Nun"]
     
+    let currentImg : [String] = ["nutcracker.jpg", "first.jpeg", "inc2.jpeg", "crazy.jpeg", "queen.jpg", "venom.jpg"]
+    
+    let upcomingImg : [String] = ["old.jpeg","hunt.jpeg","goosebumps2.jpeg","noFool.jpg","small.jpeg","nun.jpeg"]
+    
     var curInd : Int = 0
     
     override func viewDidLoad() {
@@ -58,15 +62,22 @@ class HomeTVC: UITableViewController, cellDelegate {
         cell.layer.borderWidth = 4
         let borderColor: UIColor = hexToColor(hex: 0x090E21)
         cell.layer.borderColor = borderColor.cgColor
+        
+        let num = indexPath.row * 2
         if(indexPath.section == 0) {
-            cell.title.text = current[indexPath.row * 2]
-            cell.title2.text = current[indexPath.row * 2 + 1]
+            cell.title.text = current[num]
+            cell.title2.text = current[num + 1]
+            cell.movieImage.image = UIImage(named: currentImg[num])
+            cell.movieImage2.image = UIImage(named: currentImg[num + 1])
         } else {
-            cell.title.text = upcoming[indexPath.row * 2]
-            cell.title2.text = upcoming[indexPath.row * 2 + 1]
+            cell.title.text = upcoming[num]
+            cell.title2.text = upcoming[num + 1]
+            cell.movieImage.image = UIImage(named: upcomingImg[num])
+            cell.movieImage2.image = UIImage(named: upcomingImg[num + 1])
         }
         cell.rating.text = "4.2/5.0"
-        cell.movieImage.image = UIImage(named: "clock-7.png")
+        cell.rating2.text = "4.2/5.0"
+        //cell.movieImage.image = UIImage(named: "clock-7.png")
         cell.delegate = self
         cell.index = (indexPath.section * 6) + (indexPath.row * 2)
         
@@ -117,8 +128,10 @@ class HomeTVC: UITableViewController, cellDelegate {
         let dest = segue.destination as! MovieVC
         if curInd > 5 {
             dest.movTitle = upcoming[curInd - 6]
+            dest.movImg = upcomingImg[curInd - 6]
         } else {
             dest.movTitle = current[curInd]
+            dest.movImg = currentImg[curInd]
         }
     }
  

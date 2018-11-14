@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../Resources">
+      location = "group:../Moobee Boyz">
    </FileRef>
    <FileRef
       location = "self:">
