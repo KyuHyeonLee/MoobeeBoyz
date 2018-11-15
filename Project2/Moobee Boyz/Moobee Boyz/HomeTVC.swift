@@ -84,6 +84,16 @@ class HomeTVC: UITableViewController, cellDelegate {
         return cell
     }
  
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section{
+        case 0:
+            return "Current Movies"
+        case 1:
+            return "Future Movies"
+        default:
+            return nil
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
