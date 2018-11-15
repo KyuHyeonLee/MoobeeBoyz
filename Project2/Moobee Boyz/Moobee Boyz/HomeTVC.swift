@@ -25,6 +25,8 @@ class HomeTVC: UITableViewController, cellDelegate {
     
     var curInd : Int = 0
     
+    var finalDestUrl : URL = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]).appendingPathComponent("ratings.txt")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,6 +35,13 @@ class HomeTVC: UITableViewController, cellDelegate {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        do {
+            let str = "4.2/5.0"
+            try str.write(to: finalDestUrl, atomically: true, encoding: .utf8)
+        } catch {
+            print("Error")
+        }
     }
 
     // MARK: - Table view data source
@@ -75,8 +84,14 @@ class HomeTVC: UITableViewController, cellDelegate {
             cell.movieImage.image = UIImage(named: upcomingImg[num])
             cell.movieImage2.image = UIImage(named: upcomingImg[num + 1])
         }
-        cell.rating.text = "4.2/5.0"
-        cell.rating2.text = "4.2/5.0"
+        
+        do {
+            let str = try String(contentsOf: finalDestUrl)
+            cell.rating.text = str
+            cell.rating2.text = str
+        } catch {
+            print("Error")
+        }
         //cell.movieImage.image = UIImage(named: "clock-7.png")
         cell.delegate = self
         cell.index = (indexPath.section * 6) + (indexPath.row * 2)
