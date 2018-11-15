@@ -41,28 +41,46 @@ class SearchVC: UIViewController, UITableViewDelegate, UISearchBarDelegate, UITa
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if(searchBar.text!.count < 3) {return}
-        searchResults.append(SearchResults(searchBar.text!))
-        _tableView.reloadData()
+        let key = Int.random(in: 0 ..< apiKeys.count)
+        let fixedText = searchBar.text!.replacingOccurrences(of: " ", with: "+")
+        let url = URL(string: "https://omdbapi.com/?apikey=\(apiKeys[key])&s=\(fixedText)")
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            guard let dataResponse = data,
+                error == nil else {return }
+            do{
+                let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: [])
+                if let dictionary = jsonResponse as? [String : Any] {
+                    let results = dictionary["Search"] as? [[String : Any]]
+                    for result in results!{
+                        self.searchResults.append(SearchResults(name: result["Title"] as! String, imageLoc: result["Poster"] as! String))
+                        OperationQueue.main.addOperation {
+                            self._tableView.reloadData()
+                        }
+                    }
+                }
+            } catch let parsingError {
+                print("Error", parsingError)
+            }
+        }
+        task.resume()
     }
-    /*
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
-        if(searchText.count < 3) { return }
-        searchResults.append(SearchResults(searchText))
-        _tableView.reloadData()
+        if(searchText.count == 0) {
+            searchResults.removeAll()
+            _tableView.reloadData()
+        }
     }
-    */
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(searchResults.count)
         return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SearchCell
-        print(searchResults[indexPath.row].name)
         cell._text_ = searchResults[indexPath.row].name
         cell.updateText()
         return cell
@@ -87,8 +105,10 @@ class SearchVC: UIViewController, UITableViewDelegate, UISearchBarDelegate, UITa
 
 class SearchResults{
     let name: String
+    let imageLoc: String
     
-    init(_ name: String){
+    init(name: String, imageLoc: String){
         self.name = name
+        self.imageLoc = imageLoc
     }
 }
