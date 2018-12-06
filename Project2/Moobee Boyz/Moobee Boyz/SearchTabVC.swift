@@ -1,48 +1,54 @@
 //
-//  SearchVC.swift
+//  SearchTabVC.swift
 //  Moobee Boyz
 //
-//  Created by Sean Bamford on 11/14/18.
+//  Created by COMP401 on 11/22/18.
 //  Copyright © 2018 COMP401. All rights reserved.
 //
 
 import UIKit
 
-class SearchCell: UITableViewCell{
-    @IBOutlet weak var _text: UILabel!
+class SearchTabCell: UITableViewCell {
+
+    @IBOutlet var _text: UILabel!
     
     var _text_: String!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
     
     func updateText(){
         _text.text = _text_
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
 }
 
-class SearchVC: UIViewController, UITableViewDelegate, UISearchBarDelegate, UITableViewDataSource {
-    
-   
-   // @IBOutlet weak var searchBar: UISearchBar!
+class SearchTabVC : UIViewController, UITableViewDelegate, UISearchBarDelegate, UITableViewDataSource{
     
     
-    @IBOutlet weak var _tableView: UITableView!
-    
-    var apiKeys: [String] = ["e6d495", "7cc1a35f"]
+
     
     var searchResults: [SearchResults] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationController?.navigationBar.isTranslucent = false
-        navigationItem.searchController  = UISearchController(searchResultsController: nil)
-        navigationItem.hidesSearchBarWhenScrolling = false
-       // searchBar.delegate = self
-        _tableView.delegate = self
-        _tableView.dataSource = self
-    }
+
+    @IBOutlet var _tableView: UITableView!
+
+
+
+    var apiKeys: [String] = ["e6d495", "7cc1a35f"]
+    
+    //var searchController = UISearchController()
+    //var resultsController = UITableViewController()
+    
+    
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if(searchBar.text!.count < 3) {return}
@@ -76,35 +82,67 @@ class SearchVC: UIViewController, UITableViewDelegate, UISearchBarDelegate, UITa
             _tableView.reloadData()
         }
     }
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchResults.count
+       return searchResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SearchCell
-        cell._text_ = searchResults[indexPath.row].name
-        cell.updateText()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SearchTabCell
         return cell
     }
+
     
-    func tableView(_ tableView: UITableView, xightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 45
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.title = "SEARCH"
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillDisappear(_ animated: Bool) {
+        self.title = " "
     }
-    */
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.navigationBar.isTranslucent = false
+        
+        let SearchController = UISearchController(searchResultsController: nil)
+        navigationItem.searchController = SearchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        _tableView.delegate = self
+        _tableView.dataSource = self
+        
+        
+        //searchController = UISearchController(searchResultsController: resultsController)
+        //_tableView.tableHeaderView = searchController.searchBar
+        //searchController.searchResultsUpdater = self as? UISearchResultsUpdating
+        //resultsController.tableView.delegate = self
+        //resultsController.tableView.dataSource = self
+        
+        
 
+        
+    }
+
+}
+
+class SearchResults{
+    let name: String
+    let imageLoc: String
+    
+    init(name: String, imageLoc: String){
+        self.name = name
+        self.imageLoc = imageLoc
+    }
 }
 

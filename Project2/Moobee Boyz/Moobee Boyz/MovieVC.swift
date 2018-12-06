@@ -18,6 +18,7 @@ class MovieVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isTranslucent = false
         movieTitle.text = movTitle
         movieImage.image = UIImage(named: movImg)
         // Do any additional setup after loading the view.

@@ -10,31 +10,27 @@ import UIKit
 
 class HomeTVC: UITableViewController, cellDelegate {
     
+    
+    
     func callSegue(ind : Int) {
         curInd = ind
         self.performSegue(withIdentifier: "toMovie", sender: nil)
     }
 
     let current : [String] = ["The nutcracker and the four realms", "First man", "Incredibles 2", "Crazy Rich Asians", "Bohemian Rhapsody", "Venom"]
-    
     let upcoming : [String] = ["Old Man and Gun","Hunter Killer","Goosebumps 2","Nobody's Fool","Small Foot","The Nun"]
-    
     let currentImg : [String] = ["nutcracker.jpg", "first.jpeg", "inc2.jpeg", "crazy.jpeg", "queen.jpg", "venom.jpg"]
-    
     let upcomingImg : [String] = ["old.jpeg","hunt.jpeg","goosebumps2.jpeg","noFool.jpg","small.jpeg","nun.jpeg"]
-    
     var curInd : Int = 0
+    //List of Section Titles
+    let sectionTitles: [String] = ["Current Playing", "Will Play Soon"]
+    
     
     var finalDestUrl : URL = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]).appendingPathComponent("ratings.txt")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        navigationController?.navigationBar.isTranslucent = false
         
         do {
             let str = "4.2/5.0"
@@ -45,6 +41,16 @@ class HomeTVC: UITableViewController, cellDelegate {
     }
 
     // MARK: - Table view data source
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.title = "HOME"
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.title = " "
+    }
+    
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -55,21 +61,18 @@ class HomeTVC: UITableViewController, cellDelegate {
         // #warning Incomplete implementation, return the number of rows
         return 3
     }
+    
+    
+    
 
-    func hexToColor (hex: Int) -> UIColor {
-        let red = Double((hex & 0xFF0000) >> 16) / 255.0
-        let green = Double((hex & 0xFF00) >> 8) / 255.0
-        let blue = Double((hex & 0xFF)) / 255.0
-        let color: UIColor = UIColor( red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha:CGFloat(1.0))
-        return color
-    }
+
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MovieCell
         
         cell.layer.cornerRadius = 5
         cell.layer.borderWidth = 4
-        let borderColor: UIColor = hexToColor(hex: 0x090E21)
+        let borderColor: UIColor = #colorLiteral(red: 0.03531658649, green: 0.05483096093, blue: 0.1286598742, alpha: 1)
         cell.layer.borderColor = borderColor.cgColor
         
         let num = indexPath.row * 2
@@ -92,24 +95,36 @@ class HomeTVC: UITableViewController, cellDelegate {
         } catch {
             print("Error")
         }
-        //cell.movieImage.image = UIImage(named: "clock-7.png")
         cell.delegate = self
+        
+        //***JAKE, What is the purpose of this..?
         cell.index = (indexPath.section * 6) + (indexPath.row * 2)
         
         return cell
     }
  
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section{
-        case 0:
-            return "Current Movies"
-        case 1:
-            return "Future Movies"
-        default:
-            return nil
-        }
+        return sectionTitles[section]
     }
-
+    
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 0.03669167683, green: 0.05745565146, blue: 0.1305693388, alpha: 1)
+        
+        let label = UILabel()
+        label.text = sectionTitles[section]
+        label.textColor = UIColor.white
+        label.frame = CGRect(x:5, y:5, width:200, height:20)
+        view.addSubview(label)
+        return view
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 25
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

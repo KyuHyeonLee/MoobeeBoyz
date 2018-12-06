@@ -13,8 +13,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        let barColor: UIColor = #colorLiteral(red: 0.03531658649, green: 0.05483096093, blue: 0.1286598742, alpha: 1)
+        UINavigationBar.appearance().barTintColor = barColor
+        UINavigationBar.appearance().tintColor = UIColor.white
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+    
+        // cell.layer.borderColor = borderColor.cgColor
         // Override point for customization after application launch.
         return true
     }
