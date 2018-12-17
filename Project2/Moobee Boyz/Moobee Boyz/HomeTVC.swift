@@ -20,6 +20,8 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
     
     //http://image.tmdb.org/t/p/w185/{poster}
     
+    //https://api.themoviedb.org/3/movie/top_rated?api_key=b29527a69e60d6e3c0dd359bd8ecd99f
+    
     func callSegue(ind : Int) {
         curInd = ind
         self.performSegue(withIdentifier: "toMovie", sender: nil)
@@ -107,6 +109,18 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
                     }
                 }
             }
+            DispatchQueue.main.async {
+                if downloadTask.taskIdentifier == 1 {
+                    self.current = self.current.sorted(by: { $0[2] > $1[2] })
+                    self.current = Array(self.current.prefix(6))
+                } else {
+                    for movie in self.current {
+                        self.upcoming = self.upcoming.filter({$0 != movie})
+                    }
+                    self.upcoming = self.upcoming.sorted(by: { $0[2] > $1[2] })
+                    self.upcoming = Array(self.upcoming.prefix(6))
+                }
+            }
         } catch {
             print("Download error")
         }
@@ -114,7 +128,7 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-        print("total written: \(totalBytesWritten/totalBytesExpectedToWrite)")
+        //print("total written: \(totalBytesWritten/totalBytesExpectedToWrite)")
     }
     
     
