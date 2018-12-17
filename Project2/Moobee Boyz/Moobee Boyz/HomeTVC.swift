@@ -20,22 +20,9 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
     
     //http://image.tmdb.org/t/p/w185/{poster}
     
-    //https://api.themoviedb.org/3/movie/top_rated?api_key=b29527a69e60d6e3c0dd359bd8ecd99f
-    
-    func callSegue(ind : Int) {
-        curInd = ind
-        self.performSegue(withIdentifier: "toMovie", sender: nil)
-    }
-
-    //var current : [String] = ["The nutcracker and the four realms", "First man", "Incredibles 2", "Crazy Rich Asians", "Bohemian Rhapsody", "Venom"]
     @objc dynamic var current : [[String]] = [] //title, image, rating, id
     @objc dynamic var upcoming : [[String]] = [] //title, image, rating, id
-    //var upcoming : [String] = ["Old Man and Gun","Hunter Killer","Goosebumps 2","Nobody's Fool","Small Foot","The Nun"]
-    //var currentImg: [UIImage] = []
-    //var currentImg : [String] = ["nutcracker.jpg", "first.jpeg", "inc2.jpeg", "crazy.jpeg", "queen.jpg", "venom.jpg"]
-    //var upcomingImg : [String] = ["old.jpeg","hunt.jpeg","goosebumps2.jpeg","noFool.jpg","small.jpeg","nun.jpeg"]
     var curInd : Int = 0
-    //List of Section Titles
     let sectionTitles: [String] = ["Current Playing", "Will Play Soon"]
     
     
@@ -68,6 +55,11 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
         dtask2.resume()
     }
     
+    func callSegue(ind : Int) {
+        curInd = ind
+        self.performSegue(withIdentifier: "toMovie", sender: nil)
+    }
+    
     deinit {
         self.removeObserver(self, forKeyPath: "current")
         self.removeObserver(self, forKeyPath: "upcoming")
@@ -89,23 +81,25 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
             let obj = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String : AnyObject]
             let items = obj["results"] as! [[String: AnyObject]]
             for movie in items {
-                let posterURL = "https://image.tmdb.org/t/p/w185/\(movie["poster_path"] as! String)"
-                //print(posterURL)
-                DispatchQueue.main.async {
-                    if downloadTask.taskIdentifier == 1 {
-                        self.current.append(
-                            [movie["title"] as! String,
-                             posterURL,
-                             String(Float(truncating: movie["vote_average"] as! NSNumber) / 2),
-                             String(movie["id"] as! Int)]
-                        )
-                    } else {
-                        self.upcoming.append(
-                            [movie["title"] as! String,
-                             posterURL,
-                             String(Float(truncating: movie["vote_average"] as! NSNumber) / 2),
-                             String(movie["id"] as! Int)]
-                        )
+                if (movie["title"] as! String != "Dragon Ball Super: Broly") {
+                    let posterURL = "https://image.tmdb.org/t/p/w185/\(movie["poster_path"] as! String)"
+                    //print(posterURL)
+                    DispatchQueue.main.async {
+                        if downloadTask.taskIdentifier == 1 {
+                            self.current.append(
+                                [movie["title"] as! String,
+                                 posterURL,
+                                 String(Float(truncating: movie["vote_average"] as! NSNumber) / 2),
+                                 String(movie["id"] as! Int)]
+                            )
+                        } else {
+                            self.upcoming.append(
+                                [movie["title"] as! String,
+                                 posterURL,
+                                 String(Float(truncating: movie["vote_average"] as! NSNumber) / 2),
+                                 String(movie["id"] as! Int)]
+                            )
+                        }
                     }
                 }
             }
@@ -145,12 +139,10 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
     
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         if section == 0 {
             return current.count / 2
         } else {
@@ -164,7 +156,6 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
         DispatchQueue.global().async {
             let data = try? Data(contentsOf: url!)
             DispatchQueue.main.async {
-                
                 image.image = UIImage(data: data!)
             }
         }
@@ -278,15 +269,22 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let dest = segue.destination as! MovieVC
+        let destination = segue.destination as! SearchResultVC
+        let key = Int.random(in: 0 ..< apiKeys.count)
+        var movieTitle = ""
+        var imageLoc = ""
+        
         if curInd > 5 {
-            dest.movTitle = upcoming[curInd - 6][0]
-            //dest.movImg = upcomingImg[curInd - 6]
+            movieTitle = upcoming[curInd - 6][0]
+            imageLoc = upcoming[curInd - 6][1]
         } else {
-            dest.movTitle = current[curInd][0]
-            //dest.movImg = currentImg[curInd]
+            movieTitle = current[curInd][0]
+            imageLoc = current[curInd][1]
         }
+        
+        let queryTitle = movieTitle.replacingOccurrences(of: " ", with: "+")
+        destination.query = "https://omdbapi.com/?apikey=\(apiKeys[key])&t=\(queryTitle)"
+        destination.searchResult = SearchResults(name: movieTitle, imageLoc: imageLoc)
     }
- 
 
 }
