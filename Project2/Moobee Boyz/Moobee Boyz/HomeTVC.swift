@@ -8,19 +8,30 @@
 
 import UIKit
 
-class HomeTVC: UITableViewController, cellDelegate {
+class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessionDownloadDelegate {
     
+    var apiKeys: [String] = ["e6d495", "7cc1a35f"]
     
+    var tmdbUpcoming = URL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=b29527a69e60d6e3c0dd359bd8ecd99f")
+    
+    var tmdbCurrent = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=b29527a69e60d6e3c0dd359bd8ecd99f")
+    
+    //https://api.themoviedb.org/3/movie/{movie_id}?api_key=b29527a69e60d6e3c0dd359bd8ecd99f
+    
+    //http://image.tmdb.org/t/p/w185/{poster}
     
     func callSegue(ind : Int) {
         curInd = ind
         self.performSegue(withIdentifier: "toMovie", sender: nil)
     }
 
-    let current : [String] = ["The nutcracker and the four realms", "First man", "Incredibles 2", "Crazy Rich Asians", "Bohemian Rhapsody", "Venom"]
-    let upcoming : [String] = ["Old Man and Gun","Hunter Killer","Goosebumps 2","Nobody's Fool","Small Foot","The Nun"]
-    let currentImg : [String] = ["nutcracker.jpg", "first.jpeg", "inc2.jpeg", "crazy.jpeg", "queen.jpg", "venom.jpg"]
-    let upcomingImg : [String] = ["old.jpeg","hunt.jpeg","goosebumps2.jpeg","noFool.jpg","small.jpeg","nun.jpeg"]
+    //var current : [String] = ["The nutcracker and the four realms", "First man", "Incredibles 2", "Crazy Rich Asians", "Bohemian Rhapsody", "Venom"]
+    @objc dynamic var current : [[String]] = [] //title, image, rating, id
+    @objc dynamic var upcoming : [[String]] = [] //title, image, rating, id
+    //var upcoming : [String] = ["Old Man and Gun","Hunter Killer","Goosebumps 2","Nobody's Fool","Small Foot","The Nun"]
+    //var currentImg: [UIImage] = []
+    //var currentImg : [String] = ["nutcracker.jpg", "first.jpeg", "inc2.jpeg", "crazy.jpeg", "queen.jpg", "venom.jpg"]
+    //var upcomingImg : [String] = ["old.jpeg","hunt.jpeg","goosebumps2.jpeg","noFool.jpg","small.jpeg","nun.jpeg"]
     var curInd : Int = 0
     //List of Section Titles
     let sectionTitles: [String] = ["Current Playing", "Will Play Soon"]
@@ -38,8 +49,75 @@ class HomeTVC: UITableViewController, cellDelegate {
         } catch {
             print("Error")
         }
+        
+        
+        self.addObserver(self, forKeyPath: "current", options: [.old, .new], context: nil)
+        self.addObserver(self, forKeyPath: "upcoming", options: [.old, .new], context: nil)
+
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config, delegate: self, delegateQueue: nil)
+        let dtask : URLSessionDownloadTask = session.downloadTask(with: tmdbCurrent!)
+        dtask.resume()
+        let dtask2 : URLSessionDownloadTask = session.downloadTask(with: tmdbUpcoming!)
+        dtask2.resume()
+    }
+    
+    deinit {
+        self.removeObserver(self, forKeyPath: "current")
+        self.removeObserver(self, forKeyPath: "upcoming")
     }
 
+    override func observeValue(forKeyPath keyPath: String?,
+                               of object: Any?,
+                               change: [NSKeyValueChangeKey : Any]?,
+                               context: UnsafeMutableRawPointer?){
+        //print("reloaded")
+        self.tableView.reloadData()
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        print("Finished downloading!")
+        
+        do {
+            let data = try Data(contentsOf: location)
+            let obj = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String : AnyObject]
+            let items = obj["results"] as! [[String: AnyObject]]
+            for movie in items {
+                let posterURL = "https://image.tmdb.org/t/p/w185/\(movie["poster_path"] as! String)"
+                //print(posterURL)
+                DispatchQueue.main.async {
+                    if downloadTask.taskIdentifier == 1 {
+                        self.current.append(
+                            [movie["title"] as! String,
+                             posterURL,
+                             String(Float(truncating: movie["vote_average"] as! NSNumber) / 2),
+                             String(movie["id"] as! Int)]
+                        )
+                    } else {
+                        self.upcoming.append(
+                            [movie["title"] as! String,
+                             posterURL,
+                             String(Float(truncating: movie["vote_average"] as! NSNumber) / 2),
+                             String(movie["id"] as! Int)]
+                        )
+                    }
+                }
+            }
+        } catch {
+            print("Download error")
+        }
+ 
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        print("total written: \(totalBytesWritten/totalBytesExpectedToWrite)")
+    }
+    
+    
     // MARK: - Table view data source
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,13 +137,24 @@ class HomeTVC: UITableViewController, cellDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        if section == 0 {
+            return current.count / 2
+        } else {
+            return upcoming.count / 2
+        }
     }
     
-    
-    
-
-
+    func loadImage(image : UIImageView, url : String) {
+        let url = URL(string: url)
+        
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: url!)
+            DispatchQueue.main.async {
+                
+                image.image = UIImage(data: data!)
+            }
+        }
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MovieCell
@@ -77,21 +166,31 @@ class HomeTVC: UITableViewController, cellDelegate {
         
         let num = indexPath.row * 2
         if(indexPath.section == 0) {
-            cell.title.text = current[num]
-            cell.title2.text = current[num + 1]
-            cell.movieImage.image = UIImage(named: currentImg[num])
-            cell.movieImage2.image = UIImage(named: currentImg[num + 1])
+            cell.title.text = current[num][0]
+            cell.title2.text = current[num + 1][0]
+            loadImage(image: cell.movieImage, url: current[num][1])
+            loadImage(image: cell.movieImage2, url: current[num + 1][1])
+            cell.rating.text = current[num][2]
+            cell.rating2.text = current[num + 1][2]
+            //cell.movieImage.image = UIImage(named: currentImg[num])
+            //cell.movieImage2.image = UIImage(named: currentImg[num + 1])
         } else {
-            cell.title.text = upcoming[num]
+            cell.title.text = upcoming[num][0]
+            cell.title2.text = upcoming[num + 1][0]
+            loadImage(image: cell.movieImage, url: upcoming[num][1])
+            loadImage(image: cell.movieImage2, url: upcoming[num + 1][1])
+            cell.rating.text = upcoming[num][2]
+            cell.rating2.text = upcoming[num + 1][2]
+            /*cell.title.text = upcoming[num]
             cell.title2.text = upcoming[num + 1]
             cell.movieImage.image = UIImage(named: upcomingImg[num])
-            cell.movieImage2.image = UIImage(named: upcomingImg[num + 1])
+            cell.movieImage2.image = UIImage(named: upcomingImg[num + 1])*/
         }
         
         do {
             let str = try String(contentsOf: finalDestUrl)
-            cell.rating.text = str
-            cell.rating2.text = str
+            //cell.rating.text = str
+            //cell.rating2.text = str
         } catch {
             print("Error")
         }
@@ -167,11 +266,11 @@ class HomeTVC: UITableViewController, cellDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let dest = segue.destination as! MovieVC
         if curInd > 5 {
-            dest.movTitle = upcoming[curInd - 6]
-            dest.movImg = upcomingImg[curInd - 6]
+            dest.movTitle = upcoming[curInd - 6][0]
+            //dest.movImg = upcomingImg[curInd - 6]
         } else {
-            dest.movTitle = current[curInd]
-            dest.movImg = currentImg[curInd]
+            dest.movTitle = current[curInd][0]
+            //dest.movImg = currentImg[curInd]
         }
     }
  
