@@ -34,6 +34,8 @@ class SearchTabCell: UITableViewCell {
 class SearchTabVC : UIViewController, UITableViewDelegate, UISearchBarDelegate, UITableViewDataSource{
 
     var searchResults: [SearchResults] = []
+    
+    var selectedRow : Int!
 
     @IBOutlet var _tableView: UITableView!
 
@@ -82,9 +84,6 @@ class SearchTabVC : UIViewController, UITableViewDelegate, UISearchBarDelegate, 
         return 1
     }
     
-    
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return searchResults.count
     }
@@ -96,8 +95,6 @@ class SearchTabVC : UIViewController, UITableViewDelegate, UISearchBarDelegate, 
         return cell
     }
 
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.title = "SEARCH"
@@ -106,7 +103,6 @@ class SearchTabVC : UIViewController, UITableViewDelegate, UISearchBarDelegate, 
     override func viewWillDisappear(_ animated: Bool) {
         self.title = " "
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,13 +113,20 @@ class SearchTabVC : UIViewController, UITableViewDelegate, UISearchBarDelegate, 
         navigationItem.searchController!.searchBar.delegate = self
         _tableView.delegate = self
         _tableView.dataSource = self
-        //searchController = UISearchController(searchResultsController: resultsController)
-        //_tableView.tableHeaderView = searchController.searchBar
-        //searchController.searchResultsUpdater = self as? UISearchResultsUpdating
-        //resultsController.tableView.delegate = self
-        //resultsController.tableView.dataSource = self
     }
 
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        selectedRow = indexPath.row
+        return indexPath
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! SearchResultVC
+        let key = Int.random(in: 0 ..< apiKeys.count)
+        let fixedText = searchResults[selectedRow].name.replacingOccurrences(of: " ", with: "+")
+        destination.query = "https://omdbapi.com/?apikey=\(apiKeys[key])&t=\(fixedText)"
+        destination.searchResult = searchResults[selectedRow]
+    }
 }
 
 class SearchResults{

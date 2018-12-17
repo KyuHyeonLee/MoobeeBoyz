@@ -28,26 +28,21 @@ class WatchListCell: UITableViewCell {
 
 class WatchListVC :  UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var addList: [AddList] = []
+    static var addList: [AddList] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return addList.count
+        return WatchListVC.addList.count
     }
-    
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WatchListCell", for: indexPath) as! WatchListCell
         return cell
     }
     
-
-
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

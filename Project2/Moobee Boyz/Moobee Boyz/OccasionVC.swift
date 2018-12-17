@@ -18,7 +18,6 @@ class OccasionCell: UITableViewCell {
     @IBOutlet var OccasionImages: UIImageView?
     @IBOutlet var LabelText: UILabel!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -33,22 +32,19 @@ class OccasionCell: UITableViewCell {
 
 class OccasionVC :  UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
-    
     @IBOutlet var _tableView: UITableView!
-    
     
     var images = [#imageLiteral(resourceName: "image5"), #imageLiteral(resourceName: "image2"), #imageLiteral(resourceName: "image3"), #imageLiteral(resourceName: "image1"), #imageLiteral(resourceName: "image4")]
     var Occasions = ["WWI & WWII", "CLASSIC", "HALLOWEEN", "CHRISTMAS", "NEW YEAR"]
     
+    var selectedRow : Int!
     
-   
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return images.count
+        return min(images.count, Occasions.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -67,12 +63,10 @@ class OccasionVC :  UIViewController, UITableViewDelegate, UITableViewDataSource
         _tableView.dataSource = self
     }
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.title = "BY OCCASION"
@@ -82,8 +76,27 @@ class OccasionVC :  UIViewController, UITableViewDelegate, UITableViewDataSource
         self.title = " "
     }
     
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        selectedRow = indexPath.row
+        return indexPath
+    }
     
-    
-    
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! OccasionResultVC
+        destination._title = Occasions[selectedRow]
+        switch selectedRow{
+        case 0:
+            destination.titleSource = "MoviesByOccasion.WW1_WW2"
+        case 1:
+            destination.titleSource = "MoviesByOccasion.Classic"
+        case 2:
+            destination.titleSource = "MoviesByOccasion.Halloween"
+        case 3:
+            destination.titleSource = "MoviesByOccasion.Christmas"
+        case 4:
+            destination.titleSource = "MoviesByOccasion.NewYear"
+        default:
+           var _ = 0
+        }
+    }
 }
