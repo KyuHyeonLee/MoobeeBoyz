@@ -32,25 +32,19 @@ class SearchTabCell: UITableViewCell {
 }
 
 class SearchTabVC : UIViewController, UITableViewDelegate, UISearchBarDelegate, UITableViewDataSource{
-    
-    
 
-    
     var searchResults: [SearchResults] = []
-    
 
     @IBOutlet var _tableView: UITableView!
-
-
 
     var apiKeys: [String] = ["e6d495", "7cc1a35f"]
     
     //var searchController = UISearchController()
     //var resultsController = UITableViewController()
     
-    
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchResults.removeAll()
+        _tableView.reloadData()
         if(searchBar.text!.count < 3) {return}
         let key = Int.random(in: 0 ..< apiKeys.count)
         let fixedText = searchBar.text!.replacingOccurrences(of: " ", with: "+")
@@ -97,6 +91,8 @@ class SearchTabVC : UIViewController, UITableViewDelegate, UISearchBarDelegate, 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SearchTabCell
+        cell._text_ = searchResults[indexPath.row].name
+        cell.updateText()
         return cell
     }
 
@@ -115,23 +111,17 @@ class SearchTabVC : UIViewController, UITableViewDelegate, UISearchBarDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
-        
         let SearchController = UISearchController(searchResultsController: nil)
         navigationItem.searchController = SearchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.searchController!.searchBar.delegate = self
         _tableView.delegate = self
         _tableView.dataSource = self
-        
-        
         //searchController = UISearchController(searchResultsController: resultsController)
         //_tableView.tableHeaderView = searchController.searchBar
         //searchController.searchResultsUpdater = self as? UISearchResultsUpdating
         //resultsController.tableView.delegate = self
         //resultsController.tableView.dataSource = self
-        
-        
-
-        
     }
 
 }
