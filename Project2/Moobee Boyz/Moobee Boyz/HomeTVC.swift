@@ -37,13 +37,6 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
         
-        do {
-            let str = "4.2/5.0"
-            try str.write(to: finalDestUrl, atomically: true, encoding: .utf8)
-        } catch {
-            print("Error")
-        }
-        
         
         self.addObserver(self, forKeyPath: "current", options: [.old, .new], context: nil)
         self.addObserver(self, forKeyPath: "upcoming", options: [.old, .new], context: nil)
@@ -195,14 +188,6 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
             cell.title2.text = upcoming[num + 1]
             cell.movieImage.image = UIImage(named: upcomingImg[num])
             cell.movieImage2.image = UIImage(named: upcomingImg[num + 1])*/
-        }
-        
-        do {
-            let str = try String(contentsOf: finalDestUrl)
-            //cell.rating.text = str
-            //cell.rating2.text = str
-        } catch {
-            print("Error")
         }
         cell.delegate = self
         
