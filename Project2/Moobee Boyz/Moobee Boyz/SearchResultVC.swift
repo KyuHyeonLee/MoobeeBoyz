@@ -50,6 +50,7 @@ class SearchResultVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = Constants.color_
         _title = searchResult.name
         if searchResult.imageLoc != "N/A"{
             let url = URL(string: searchResult.imageLoc)
