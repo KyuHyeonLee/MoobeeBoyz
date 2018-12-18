@@ -50,6 +50,7 @@ class SearchTabVC : UIViewController, UITableViewDelegate, UISearchBarDelegate, 
         if(searchBar.text!.count < 3) {return}
         let key = Int.random(in: 0 ..< apiKeys.count)
         let fixedText = searchBar.text!.replacingOccurrences(of: " ", with: "+")
+        //{"Response":"False","Error":"Movie not found!"}
         let url = URL(string: "https://omdbapi.com/?apikey=\(apiKeys[key])&s=\(fixedText)")
         let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             guard let dataResponse = data,
@@ -57,11 +58,13 @@ class SearchTabVC : UIViewController, UITableViewDelegate, UISearchBarDelegate, 
             do{
                 let jsonResponse = try JSONSerialization.jsonObject(with: dataResponse, options: [])
                 if let dictionary = jsonResponse as? [String : Any] {
+                    if dictionary["Search"] != nil{
                     let results = dictionary["Search"] as? [[String : Any]]
-                    for result in results!{
-                        self.searchResults.append(SearchResults(name: result["Title"] as! String, imageLoc: result["Poster"] as! String))
-                        OperationQueue.main.addOperation {
-                            self._tableView.reloadData()
+                        for result in results!{
+                            self.searchResults.append(SearchResults(name: result["Title"] as! String, imageLoc:     result["Poster"] as! String))
+                            OperationQueue.main.addOperation {
+                                self._tableView.reloadData()
+                            }
                         }
                     }
                 }
