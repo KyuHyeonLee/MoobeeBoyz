@@ -20,7 +20,7 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var rating: UILabel!
     @IBAction func Area1Tap(_ sender: Any) {
-        print(index)
+        //print(index)
         if self.delegate != nil {
             self.delegate.callSegue(ind : index)
         }
@@ -30,7 +30,7 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var rating2: UILabel!
     @IBOutlet weak var movieImage2: UIImageView!
     @IBAction func Area2Tap(_ sender: Any) {
-        print(index + 1)
+        //print(index + 1)
         if self.delegate != nil {
             self.delegate.callSegue(ind : index + 1)
         }
