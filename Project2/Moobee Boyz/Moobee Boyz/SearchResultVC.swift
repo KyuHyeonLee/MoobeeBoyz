@@ -20,9 +20,9 @@ class SearchResultVC: UIViewController {
     @IBAction func onZoom(_ sender: UIPinchGestureRecognizer) {
         if sender.state == .ended || sender.state == .changed {
             let currentScale = sender.view!.frame.size.width / sender.view!.bounds.size.width
-            print("old: \(lastScale) new: \(sender.scale)")
+            //print("old: \(lastScale) new: \(sender.scale)")
             let newScale = sender.scale / lastScale
-            print(newScale)
+            //print(newScale)
             if currentScale > 3 && newScale < 1{
                 sender.view!.transform = sender.view!.transform.scaledBy(x: newScale, y: newScale)
             } else if currentScale < 0.3 && newScale > 1 {
