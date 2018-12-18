@@ -16,6 +16,7 @@ class OccasionResultCell: UITableViewCell{
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundColor = Constants.color_
     }
     
     func updateLabel(){
@@ -32,11 +33,11 @@ class OccasionResultVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = _title
-        print(MoviesByOccasion.WW1_WW2.count)
-        print(MoviesByOccasion.Christmas.count)
-        print(MoviesByOccasion.Halloween.count)
-        print(MoviesByOccasion.NewYear.count)
-        print(MoviesByOccasion.Classic.count)
+        MoviesByOccasion.WW1_WW2.shuffle()
+        MoviesByOccasion.Christmas.shuffle()
+        MoviesByOccasion.Classic.shuffle()
+        MoviesByOccasion.Halloween.shuffle()
+        MoviesByOccasion.NewYear.shuffle()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,20 +67,15 @@ class OccasionResultVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! OccasionResultCell
         switch(titleSource){
         case "MoviesByOccasion.WW1_WW2":
-            let rand = Int.random(in: 0..<MoviesByOccasion.WW1_WW2.count)
-            cell._label = MoviesByOccasion.WW1_WW2[rand]
+            cell._label = MoviesByOccasion.WW1_WW2[indexPath.row]
         case "MoviesByOccasion.Christmas":
-            let rand = Int.random(in: 0..<MoviesByOccasion.Christmas.count)
-            cell._label = MoviesByOccasion.Christmas[rand]
+            cell._label = MoviesByOccasion.Christmas[indexPath.row]
         case "MoviesByOccasion.Classic":
-            let rand = Int.random(in: 0..<MoviesByOccasion.Classic.count)
-            cell._label = MoviesByOccasion.Classic[rand]
+            cell._label = MoviesByOccasion.Classic[indexPath.row]
         case "MoviesByOccasion.Halloween":
-            let rand = Int.random(in: 0..<MoviesByOccasion.Halloween.count)
-            cell._label = MoviesByOccasion.Halloween[rand]
+            cell._label = MoviesByOccasion.Halloween[indexPath.row]
         case "MoviesByOccasion.NewYear":
-            let rand = Int.random(in: 0..<MoviesByOccasion.NewYear.count)
-            cell._label = MoviesByOccasion.NewYear[rand]
+            cell._label = MoviesByOccasion.NewYear[indexPath.row]
         default:
             cell._label = ""
         }

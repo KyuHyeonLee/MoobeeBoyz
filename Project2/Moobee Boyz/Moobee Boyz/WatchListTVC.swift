@@ -97,7 +97,7 @@ class WatchListTVC :  UITableViewController, RefreshTableDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
-        
+        self.tableView.allowsMultipleSelectionDuringEditing = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }
@@ -136,6 +136,22 @@ class WatchListTVC :  UITableViewController, RefreshTableDelegate {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 25
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if indexPath.section == 0{
+                WatchListTVC.addList.remove(at: indexPath.row)
+            }
+            else{
+                WatchListTVC.seenList.remove(at:indexPath.row)
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
     
 }

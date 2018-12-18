@@ -8,6 +8,10 @@
 
 import UIKit
 
+class Constants{
+    static let color_ : UIColor = UIColor(red: 0.16, green: 0.18, blue: 0.31, alpha: 1.0)
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

@@ -20,7 +20,7 @@ class SearchTabCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.backgroundColor = Constants.color_
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -102,6 +102,9 @@ class SearchTabVC : UIViewController, UITableViewDelegate, UISearchBarDelegate, 
     
     override func viewWillDisappear(_ animated: Bool) {
         self.title = " "
+        searchResults.removeAll()
+        _tableView.reloadData()
+        super.viewWillDisappear(animated)
     }
     
     override func viewDidLoad() {

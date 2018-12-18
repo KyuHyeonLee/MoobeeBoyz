@@ -16,6 +16,8 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
     
     var tmdbCurrent = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=b29527a69e60d6e3c0dd359bd8ecd99f")
     
+    
+    
     //https://api.themoviedb.org/3/movie/{movie_id}?api_key=b29527a69e60d6e3c0dd359bd8ecd99f
     
     //http://image.tmdb.org/t/p/w185/{poster}
