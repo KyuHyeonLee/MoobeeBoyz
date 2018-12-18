@@ -24,6 +24,7 @@ class WatchListCell: UITableViewCell {
     
     @IBAction func tapWatched(_ sender: Any) {
         WatchListTVC.addList = WatchListTVC.addList.filter({$0 != cellMovie})
+        WatchListTVC.seenList = WatchListTVC.seenList.filter({$0 != cellMovie})
         WatchListTVC.seenList.append(cellMovie)
         delegate?.refresh()
     }
