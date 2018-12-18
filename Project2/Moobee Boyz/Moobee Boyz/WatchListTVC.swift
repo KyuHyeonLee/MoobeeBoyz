@@ -71,10 +71,11 @@ class WatchListTVC :  UITableViewController, RefreshTableDelegate {
         let url = URL(string: url)
         
         DispatchQueue.global().async {
-            let data = try? Data(contentsOf: url!)
-            DispatchQueue.main.async {
-                image.contentMode = .scaleAspectFit
-                image.image = UIImage(data: data!)
+            if let data = try? Data(contentsOf: url!) {
+                DispatchQueue.main.async {
+                    image.contentMode = .scaleAspectFit
+                    image.image = UIImage(data: data)
+                }
             }
         }
     }

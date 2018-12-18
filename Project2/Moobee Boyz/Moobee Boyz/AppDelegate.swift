@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         } catch {
-            print("Error")
+            print("Error in del")
         }
         // cell.layer.borderColor = borderColor.cgColor
         // Override point for customization after application launch.
