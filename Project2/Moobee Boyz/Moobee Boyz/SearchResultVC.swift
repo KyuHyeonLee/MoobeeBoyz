@@ -9,6 +9,37 @@
 import UIKit
 
 class SearchResultVC: UIViewController {
+    @IBAction func onPan(_ sender: UIPanGestureRecognizer) {
+        let shift = sender.translation(in: view)
+        sender.view!.transform = sender.view!.transform.translatedBy(x: shift.x, y: shift.y)
+        sender.setTranslation(CGPoint(x: 0, y: 0), in: view)
+    }
+    
+    var lastScale : CGFloat = 0
+    
+    @IBAction func onZoom(_ sender: UIPinchGestureRecognizer) {
+        if sender.state == .ended || sender.state == .changed {
+            let currentScale = sender.view!.frame.size.width / sender.view!.bounds.size.width
+            print("old: \(lastScale) new: \(sender.scale)")
+            let newScale = sender.scale / lastScale
+            print(newScale)
+            if currentScale > 3 && newScale < 1{
+                sender.view!.transform = sender.view!.transform.scaledBy(x: newScale, y: newScale)
+            } else if currentScale < 0.3 && newScale > 1 {
+                sender.view!.transform = sender.view!.transform.scaledBy(x: newScale, y: newScale)
+            } else if currentScale < 3 && currentScale > 0.3 {
+                sender.view!.transform = sender.view!.transform.scaledBy(x: sender.scale, y: sender.scale)
+            }
+            lastScale = sender.scale
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.view.transform = CGAffineTransform.identity
+    }
+    
+    var size : Int = 0
     
     var image : UIImage!
     
@@ -50,7 +81,7 @@ class SearchResultVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Constants.color_
+        //self.view.backgroundColor = Constants.color_
         _title = searchResult.name
         if searchResult.imageLoc != "N/A"{
             let url = URL(string: searchResult.imageLoc)

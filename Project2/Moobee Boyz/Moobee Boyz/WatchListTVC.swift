@@ -13,7 +13,7 @@ protocol RefreshTableDelegate{
 }
 
 class WatchListCell: UITableViewCell {
-
+    
     var delegate : RefreshTableDelegate?
     
     var cellMovie : [String] = []
@@ -46,7 +46,7 @@ class WatchListCell: UITableViewCell {
 class WatchListTVC :  UITableViewController, RefreshTableDelegate {
     func refresh() {
         self.tableView.reloadData()
-        print("refresh")
+        //print("refresh")
     }
     
     static var addList: [[String]] = []

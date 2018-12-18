@@ -12,11 +12,14 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
     
     var apiKeys: [String] = ["e6d495", "7cc1a35f"]
     
+    var closureSort : (([String], [String]) -> Bool) = {
+        (s1: [String], s2: [String]) -> Bool in
+            return s1[2] > s2[2]
+    }
+    
     var tmdbUpcoming = URL(string: "https://api.themoviedb.org/3/movie/upcoming?api_key=b29527a69e60d6e3c0dd359bd8ecd99f")
     
     var tmdbCurrent = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=b29527a69e60d6e3c0dd359bd8ecd99f")
-    
-    
     
     //https://api.themoviedb.org/3/movie/{movie_id}?api_key=b29527a69e60d6e3c0dd359bd8ecd99f
     
@@ -33,13 +36,6 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
-        
-        do {
-            let str = "4.2/5.0"
-            try str.write(to: finalDestUrl, atomically: true, encoding: .utf8)
-        } catch {
-            print("Error")
-        }
         
         
         self.addObserver(self, forKeyPath: "current", options: [.old, .new], context: nil)
@@ -107,13 +103,13 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
             }
             DispatchQueue.main.async {
                 if downloadTask.taskIdentifier == 1 {
-                    self.current = self.current.sorted(by: { $0[2] > $1[2] })
+                    self.current = self.current.sorted(by: self.closureSort)
                     self.current = Array(self.current.prefix(6))
                 } else {
                     for movie in self.current {
                         self.upcoming = self.upcoming.filter({$0 != movie})
                     }
-                    self.upcoming = self.upcoming.sorted(by: { $0[2] > $1[2] })
+                    self.upcoming = self.upcoming.sorted(by: self.closureSort)
                     self.upcoming = Array(self.upcoming.prefix(6))
                 }
             }
@@ -192,14 +188,6 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
             cell.title2.text = upcoming[num + 1]
             cell.movieImage.image = UIImage(named: upcomingImg[num])
             cell.movieImage2.image = UIImage(named: upcomingImg[num + 1])*/
-        }
-        
-        do {
-            _ = try String(contentsOf: finalDestUrl)
-            //cell.rating.text = str
-            //cell.rating2.text = str
-        } catch {
-            print("Error")
         }
         cell.delegate = self
         
