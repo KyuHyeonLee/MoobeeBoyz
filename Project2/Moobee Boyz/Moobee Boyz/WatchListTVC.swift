@@ -99,6 +99,48 @@ class WatchListTVC :  UITableViewController, RefreshTableDelegate {
         self.tableView.allowsMultipleSelectionDuringEditing = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        let finalDestUrl : URL = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]).appendingPathComponent("watchlist.txt")
+        do {
+            let str = try String(contentsOf: finalDestUrl)
+            let lists = str.split(separator: "^")
+            if lists.count == 4{
+                let watch = lists[0].split(separator: "@")
+                WatchListTVC.addList.removeAll()
+                var tempArr : [String] = []
+                for title in watch{
+                    tempArr.append(String(describing: title))
+                }
+                let watchPoster = lists[1].split(separator: "@")
+                var _tempArr : [String] = []
+                for poster in watchPoster{
+                    _tempArr.append(String(describing: poster))
+                }
+                var i = 0
+                while i < min(tempArr.count, _tempArr.count){
+                    WatchListTVC.addList.append([tempArr[i], _tempArr[i]])
+                    i += 1
+                }
+                let seen = lists[2].split(separator: "@")
+                WatchListTVC.seenList.removeAll()
+                var __tempArr : [String] = []
+                for title in seen{
+                    __tempArr.append(String(describing: title))
+                }
+                let seenPoster = lists[3].split(separator: "@")
+                var ___tempArr : [String] = []
+                for poster in seenPoster{
+                    ___tempArr.append(String(describing: poster))
+                }
+                i = 0
+                while i < min(__tempArr.count, ___tempArr.count){
+                    WatchListTVC.seenList.append([__tempArr[i], ___tempArr[i]])
+                    i += 1
+                }
+            }
+        } catch {
+            print("Error")
+        }
+        tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -113,6 +155,49 @@ class WatchListTVC :  UITableViewController, RefreshTableDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.title = " "
+        let finalDestUrl : URL = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]).appendingPathComponent("watchlist.txt")
+        do {
+            var str = ""
+            var i = 0
+            for entry in WatchListTVC.addList{
+                str.append(entry[0])
+                i += 1
+                if i != WatchListTVC.addList.count {
+                    str.append("@")
+                }
+            }
+            str.append("^")
+            i = 0
+            for entry in WatchListTVC.addList{
+                str.append(entry[1])
+                i += 1
+                if i != WatchListTVC.addList.count {
+                    str.append("@")
+                }
+            }
+            str.append("^")
+            i = 0
+            for entry in WatchListTVC.seenList{
+                str.append(entry[0])
+                i += 1
+                if i != WatchListTVC.seenList.count{
+                    str.append("@")
+                }
+            }
+            str.append("^")
+            i = 0
+            for entry in WatchListTVC.seenList{
+                str.append(entry[1])
+                i += 1
+                if i != WatchListTVC.seenList.count{
+                    str.append("@")
+                }
+            }
+            print(str)
+            try str.write(to: finalDestUrl, atomically: true, encoding: .utf8)
+        } catch {
+            print("Error")
+        }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
