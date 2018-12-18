@@ -194,7 +194,6 @@ class WatchListTVC :  UITableViewController, RefreshTableDelegate {
                     str.append("@")
                 }
             }
-            print(str)
             try str.write(to: finalDestUrl, atomically: true, encoding: .utf8)
         } catch {
             print("Error")
