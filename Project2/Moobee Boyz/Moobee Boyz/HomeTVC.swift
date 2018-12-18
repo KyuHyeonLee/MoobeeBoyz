@@ -195,7 +195,7 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
         }
         
         do {
-            let str = try String(contentsOf: finalDestUrl)
+            _ = try String(contentsOf: finalDestUrl)
             //cell.rating.text = str
             //cell.rating2.text = str
         } catch {
