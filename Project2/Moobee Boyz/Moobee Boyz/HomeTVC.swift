@@ -76,7 +76,7 @@ class HomeTVC: UITableViewController, cellDelegate, URLSessionDelegate, URLSessi
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        print("Finished downloading!")
+        //print("Finished downloading!")
         
         do {
             let data = try Data(contentsOf: location)

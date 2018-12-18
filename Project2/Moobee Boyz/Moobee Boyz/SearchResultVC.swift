@@ -97,6 +97,9 @@ class SearchResultVC: UIViewController {
     }
     
     @IBAction func tapAddWatchlist(_ sender: Any){
-        WatchListVC.addList.append(AddList(Moviename: self._title, MovieImage: self.searchResult.imageLoc))
+        let movie : [String] = [self._title, self.searchResult.imageLoc]
+        if !WatchListTVC.addList.contains(movie) && !WatchListTVC.seenList.contains(movie){
+            WatchListTVC.addList.append(movie)
+        }
     }
 }
