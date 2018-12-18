@@ -31,8 +31,9 @@
       "scale" : "3x"
     },
     {
-      "idiom" : "iphone",
       "size" : "60x60",
+      "idiom" : "iphone",
+      "filename" : "iStock-516189065-2-3.jpg",
       "scale" : "2x"
     },
     {
@@ -71,8 +72,9 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "iStock-516189065-2-4.jpg",
       "scale" : "1x"
     },
     {
